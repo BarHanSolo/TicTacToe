@@ -1,0 +1,88 @@
+$color-x: red;
+$color-o: blue;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+
+  &__item {
+    background-color: lightcyan;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    border-radius: 5px;
+    border: 2px solid gray;
+    position: relative;
+    &:hover {
+      background-color: greenyellow;
+    }
+    &--filled-X {
+      &::after, &::before {
+        position: absolute;
+        content: "";
+        height: 5px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        background-color: $color-x;
+      }
+      &::before {
+        transform: translateY(-50%) rotate(-45deg);
+      }
+      &::after {
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+    &--filled-O::before {
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+      border: 5px solid $color-o;
+      width: 80%;
+      height: 80%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s linear;
+  background-color: lightsalmon;
+  &:hover {
+    background-color: lightgoldenrodyellow;
+  }
+}
+
+.panel {
+  height: 50px;
+  font-size: 30px;
+  font-weight: 700;
+}
